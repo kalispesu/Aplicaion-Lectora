@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <ComponentGroup Id="ProductComponents">
+        <Component Id="MainExe_x86" Guid="2B6B5DA1-D475-4BA9-8F2C-723BCF6A1933">
+          <File Source="..\BinFiles\x86\LectorPDF.exe" KeyPath="yes" />
+          <File Source="..\BinFiles\x86\Newtonsoft.Json.dll" />
+          <File Source="..\BinFiles\x86\PdfiumViewer.dll" />
+          <File Source="..\BinFiles\x86\pdfium.dll" />
+        </Component>
+      </ComponentGroup>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

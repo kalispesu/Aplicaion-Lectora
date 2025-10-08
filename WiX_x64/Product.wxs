@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="LectorPDF" Language="1033" Version="1.0.0.0" Manufacturer="TuNombre" UpgradeCode="2968B303-E2C1-4170-92DF-BAAFAFCD3C8E">
+    <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" />
+    <MediaTemplate />
+    <Feature Id="ProductFeature" Title="LectorPDF" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  </Product>
+</Wix>

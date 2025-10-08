@@ -1,0 +1,77 @@
+<Window x:Class="LectorPdf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="LectorPDF" Height="700" Width="1100"
+        Loaded="Window_Loaded">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Panel lateral: Biblioteca -->
+        <DockPanel Grid.Column="0">
+            <StackPanel Margin="8">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <TextBlock Text="Mi Biblioteca" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="8,0,0,0">
+                        <Button x:Name="btnToggleTheme" Content="Modo nocturno" Click="btnToggleTheme_Click" Width="120" />
+                    </StackPanel>
+                </StackPanel>
+                <ListBox x:Name="lstLibrary" Height="360" DisplayMemberPath="Title" SelectionChanged="lstLibrary_SelectionChanged" />
+                <WrapPanel Margin="0,8,0,0">
+                    <Button x:Name="btnAdd" Content="Agregar PDF" Click="btnAdd_Click" Width="120" />
+                    <Button x:Name="btnRemove" Content="Quitar" Click="btnRemove_Click" Width="120" Margin="8,0,0,0" />
+                </WrapPanel>
+
+                <TextBlock Text="Marcadores" FontWeight="Bold" Margin="0,12,0,0" />
+                <ListBox x:Name="lstBookmarks" Height="120" DisplayMemberPath="Display" />
+
+                <Button x:Name="btnToggleBookmarks" Content="Ir al marcador" Click="btnGoToBookmark_Click" Margin="0,8,0,0" />
+
+            </StackPanel>
+        </DockPanel>
+
+        <!-- Visor PDF y controles -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="160" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="8">
+                <Button x:Name="btnPrev" Content="Anterior" Click="btnPrev_Click" Width="80" />
+                <Button x:Name="btnNext" Content="Siguiente" Click="btnNext_Click" Width="80" Margin="8,0,0,0" />
+                <TextBlock Text="Página:" VerticalAlignment="Center" Margin="12,0,0,0" />
+                <TextBox x:Name="txtPage" Width="60" TextChanged="txtPage_TextChanged" />
+                <TextBlock x:Name="txtPageCount" VerticalAlignment="Center" Margin="8,0,0,0" />
+
+                <Separator Width="16" />
+                <Button x:Name="btnHighlightMode" Content="Resaltar" Click="btnHighlightMode_Click" />
+                <Button x:Name="btnAddBookmark" Content="Añadir marcador" Click="btnAddBookmark_Click" Margin="8,0,0,0" />
+                <Button x:Name="btnSave" Content="Guardar" Click="btnSave_Click" Margin="8,0,0,0" />
+            </StackPanel>
+
+            <!-- Pdf Viewer se incrusta como WindowsFormsHost que contiene un control PdfiumViewer -->
+            <WindowsFormsHost Grid.Row="1" x:Name="winFormsHost" Margin="8" />
+
+            <!-- Panel inferior: comentarios / highlights -->
+            <Border Grid.Row="2" BorderThickness="1" BorderBrush="LightGray" Margin="8">
+                <StackPanel Margin="8">
+                    <TextBlock Text="Anotaciones" FontWeight="Bold" />
+                    <ListBox x:Name="lstAnnotations" DisplayMemberPath="Summary" Height="100" />
+                    <TextBlock Text="Comentario seleccionado:" Margin="0,8,0,0" />
+                    <TextBox x:Name="txtAnnotationText" Height="32" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
